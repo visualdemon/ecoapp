@@ -20,10 +20,10 @@ return new class extends Migration
             $table->rememberToken();
 
             // Campos adicionales
-            $table->string('last_name');
-            $table->string('cellphone');
-            $table->string('identification_number');
-            $table->date('date_of_birth');
+            $table->string('last_name')->nullable();
+            $table->string('cellphone')->nullable();
+            $table->string('identification_number')->nullable();
+            $table->date('date_of_birth')->nullable();
 
 
 
