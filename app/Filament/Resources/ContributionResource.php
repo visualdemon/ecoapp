@@ -23,21 +23,31 @@ class ContributionResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('units_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('customer_storage_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('user_id')
-                    ->required()
-                    ->numeric(),
+
+                Forms\Components\Select::make('customer_storage_id')
+                    ->label('Customer storage')
+                    ->relationship('customerStorage', 'name')
+                    ->preload()
+                    ->required(),
+
                 Forms\Components\TextInput::make('file_count')
                     ->required()
                     ->numeric(),
+
                 Forms\Components\TextInput::make('value')
                     ->required()
                     ->numeric(),
+
+                Forms\Components\Select::make('units_id')
+                    ->label('Measurement unit')
+                    ->relationship('unit', 'abbreviation')
+                    ->preload()
+                    ->required(),
+
+                Forms\Components\TextInput::make('user_id')
+                    ->required()
+                    ->numeric(),
+
             ]);
     }
 
@@ -45,19 +55,22 @@ class ContributionResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('units_id')
+                Tables\Columns\TextColumn::make('user_id')
                     ->numeric()
+                    ->icon('heroicon-s-user')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('customer_storage_id')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('user_id')
-                    ->numeric()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('file_count')
                     ->numeric()
+                    ->icon('tabler-files')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('value')
+                    ->numeric()
+                    ->icon('tabler-database-minus')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('units_id')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -81,14 +94,14 @@ class ContributionResource extends Resource
                 ]),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -96,5 +109,5 @@ class ContributionResource extends Resource
             'create' => Pages\CreateContribution::route('/create'),
             'edit' => Pages\EditContribution::route('/{record}/edit'),
         ];
-    }    
+    }
 }
