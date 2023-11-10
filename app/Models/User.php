@@ -18,12 +18,21 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+
         'name',
         'email',
         'password',
+        'last_name',
+        'cellphone',
+        'identification_number',
+        'date_of_birth',
         'institution_id',
-        'can_administer_filament',
     ];
+
+    public function institution()
+    {
+        return $this->belongsTo('App\Models\Institution');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

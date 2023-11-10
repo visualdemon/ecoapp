@@ -15,9 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('abbreviation');
-            $table->decimal('value', 10, 3);
+            $table->decimal('value', 8, 2);
 
             $table->timestamps();
+        });
+
+        // alterar tabla para que alcance los datos de byte
+        Schema::table('measurement_units', function(Blueprint $table){
+            $table->decimal('value', 10, 3)->change();
         });
     }
 
@@ -28,4 +33,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('measurement_units');
     }
+
+
 };
