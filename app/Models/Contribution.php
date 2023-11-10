@@ -12,7 +12,7 @@ class Contribution extends Model
     protected $fillable = [
         'file_count',
         'value',
-        'units_id',
+        'unit_id',
         'customer_storage_id',
         'user_id',
     ];

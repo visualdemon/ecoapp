@@ -38,7 +38,7 @@ class ContributionResource extends Resource
                     ->required()
                     ->numeric(),
 
-                Forms\Components\Select::make('units_id')
+                Forms\Components\Select::make('unit_id')
                     ->label('Measurement unit')
                     ->relationship('unit', 'abbreviation')
                     ->preload()
@@ -55,12 +55,13 @@ class ContributionResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_id')
+                Tables\Columns\TextColumn::make('user.name')
                     ->numeric()
                     ->icon('heroicon-s-user')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('customer_storage_id')
+                Tables\Columns\TextColumn::make('customerStorage.name')
                     ->numeric()
+                    ->icon('tabler-chevron-right')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('file_count')
                     ->numeric()
@@ -70,7 +71,7 @@ class ContributionResource extends Resource
                     ->numeric()
                     ->icon('tabler-database-minus')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('units_id')
+                Tables\Columns\TextColumn::make('unit.abbreviation')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')

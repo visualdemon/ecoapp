@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('file_count');
             $table->decimal('value', 8, 2);
-            $table->unsignedBigInteger('units_id');
-            $table->foreign('units_id')->references('id')->on('measurement_units');
+            $table->unsignedBigInteger('unit_id');
+            $table->foreign('unit_id')->references('id')->on('measurement_units');
             $table->foreignId('customer_storage_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
