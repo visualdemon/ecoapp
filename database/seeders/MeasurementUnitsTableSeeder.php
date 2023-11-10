@@ -41,4 +41,4 @@ class MeasurementUnitsTableSeeder extends Seeder
         }
     }
 }
-//---- Correr esta seeder php artisan db:seed --class=MeasurementUnitsTableSeeder.php
+//---- Correr esta seeder php artisan db:seed --class=MeasurementUnitsTableSeeder
